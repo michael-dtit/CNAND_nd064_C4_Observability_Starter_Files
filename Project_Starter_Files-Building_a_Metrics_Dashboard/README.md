@@ -4,6 +4,36 @@
 
 *TODO:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
 
+```
+$ kubectl --namespace monitoring get all -l "release=prometheus"
+NAME                                                       READY   STATUS    RESTARTS   AGE
+pod/prometheus-kube-prometheus-operator-565cbd8649-q7d4t   1/1     Running   0          108s
+pod/prometheus-kube-state-metrics-849c746cf5-q5w9q         1/1     Running   0          108s
+pod/prometheus-prometheus-node-exporter-dzq7k              1/1     Running   0          108s
+
+NAME                                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
+service/prometheus-kube-prometheus-alertmanager   ClusterIP   10.43.15.22     <none>        9093/TCP,8080/TCP   109s
+service/prometheus-kube-prometheus-operator       ClusterIP   10.43.159.235   <none>        443/TCP             109s
+service/prometheus-kube-prometheus-prometheus     ClusterIP   10.43.138.111   <none>        9090/TCP,8080/TCP   109s
+service/prometheus-kube-state-metrics             ClusterIP   10.43.127.58    <none>        8080/TCP            109s
+service/prometheus-prometheus-node-exporter       ClusterIP   10.43.201.28    <none>        9100/TCP            109s
+
+NAME                                                 DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+daemonset.apps/prometheus-prometheus-node-exporter   1         1         1       1            1           kubernetes.io/os=linux   108s
+
+NAME                                                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/prometheus-kube-prometheus-operator   1/1     1            1           108s
+deployment.apps/prometheus-kube-state-metrics         1/1     1            1           108s
+
+NAME                                                             DESIRED   CURRENT   READY   AGE
+replicaset.apps/prometheus-kube-prometheus-operator-565cbd8649   1         1         1       108s
+replicaset.apps/prometheus-kube-state-metrics-849c746cf5         1         1         1       108s
+
+NAME                                                                    READY   AGE
+statefulset.apps/alertmanager-prometheus-kube-prometheus-alertmanager   1/1     91s
+statefulset.apps/prometheus-prometheus-kube-prometheus-prometheus       1/1     90s
+```
+
 ## Setup the Jaeger and Prometheus source
 *TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
 
@@ -17,7 +47,7 @@
 *TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
 
 ## Create a Dashboard to measure our SLIs
-*TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
+*TODO:* Create a dashboard to measure the uptime of the frontend and backend services. We will also want to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
 
 ## Tracing our Flask App
 *TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
@@ -26,7 +56,7 @@
 *TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
 
 ## Report Error
-*TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
+*TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can use a tracer to locate errors easily.
 
 TROUBLE TICKET
 
@@ -50,4 +80,4 @@ Description:
 *TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
 
 ## Final Dashboard
-*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here and write a text description of what graphs are represented in the dashboard.  
