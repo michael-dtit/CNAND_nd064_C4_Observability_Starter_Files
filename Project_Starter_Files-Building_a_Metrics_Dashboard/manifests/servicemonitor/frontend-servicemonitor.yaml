@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: frontend-servicemonitor
+  #namespace: monitoring
+  labels:
+    release: prometheus  # must match Helm release label
+spec:
+  selector:
+    matchLabels:
+      app: frontend          # must match labels on the *Service*
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    - port: frontend-service-port         # must match the named port in the *Service*
+      path: /metrics
+      interval: 15s
