@@ -4,44 +4,24 @@
 
 *TODO:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
 
-```
-$ kubectl --namespace monitoring get all -l "release=prometheus"
-NAME                                                       READY   STATUS    RESTARTS   AGE
-pod/prometheus-kube-prometheus-operator-565cbd8649-q7d4t   1/1     Running   0          108s
-pod/prometheus-kube-state-metrics-849c746cf5-q5w9q         1/1     Running   0          108s
-pod/prometheus-prometheus-node-exporter-dzq7k              1/1     Running   0          108s
-
-NAME                                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
-service/prometheus-kube-prometheus-alertmanager   ClusterIP   10.43.15.22     <none>        9093/TCP,8080/TCP   109s
-service/prometheus-kube-prometheus-operator       ClusterIP   10.43.159.235   <none>        443/TCP             109s
-service/prometheus-kube-prometheus-prometheus     ClusterIP   10.43.138.111   <none>        9090/TCP,8080/TCP   109s
-service/prometheus-kube-state-metrics             ClusterIP   10.43.127.58    <none>        8080/TCP            109s
-service/prometheus-prometheus-node-exporter       ClusterIP   10.43.201.28    <none>        9100/TCP            109s
-
-NAME                                                 DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
-daemonset.apps/prometheus-prometheus-node-exporter   1         1         1       1            1           kubernetes.io/os=linux   108s
-
-NAME                                                  READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/prometheus-kube-prometheus-operator   1/1     1            1           108s
-deployment.apps/prometheus-kube-state-metrics         1/1     1            1           108s
-
-NAME                                                             DESIRED   CURRENT   READY   AGE
-replicaset.apps/prometheus-kube-prometheus-operator-565cbd8649   1         1         1       108s
-replicaset.apps/prometheus-kube-state-metrics-849c746cf5         1         1         1       108s
-
-NAME                                                                    READY   AGE
-statefulset.apps/alertmanager-prometheus-kube-prometheus-alertmanager   1/1     91s
-statefulset.apps/prometheus-prometheus-kube-prometheus-prometheus       1/1     90s
-```
+![monitoring pods](answer-img/get_pods_monitoring.png)
+![tracing pods](answer-img/get_pods_observability.png)
 
 ## Setup the Jaeger and Prometheus source
 *TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
 
+![grafana homepage](answer-img/grafana-homepage.png)
+
 ## Create a Basic Dashboard
 *TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
 
+![grafana basic dashboard](answer-img/grafana-basic-dashboard.png)
+
 ## Describe SLO/SLI
 *TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
+
+SLO1: The application will have an uptime of 99% in the past month.
+SLO2: 99% of requests return in 100ms in the past month.
 
 ## Creating SLI metrics.
 *TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
