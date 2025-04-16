@@ -3,12 +3,12 @@
 FROM python:3.7-slim
 
 # Copy local code to the container image.
-ENV APP_HOME /app
+ENV APP_HOME=/app
 WORKDIR $APP_HOME
 COPY . ./
 
 ARG PROJECT_ID
-ENV PROJECT_ID ${PROJECT_ID}
+ENV PROJECT_ID=${PROJECT_ID}
 
 
 # Install production dependencies.
