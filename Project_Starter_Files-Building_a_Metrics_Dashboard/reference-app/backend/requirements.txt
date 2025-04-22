@@ -5,13 +5,9 @@ gunicorn==20.0.4
 pymongo==3.11.0
 Flask-PyMongo==2.3.0
 prometheus-client==0.12.0
-
-# historic dependencies...
-Werkzeug==0.15
-Jinja2==2.10.1
-itsdangerous==0.24
-click==5.1
-markupsafe==2.0.1
+jinja2==3.0.3
+itsdangerous==2.0.1
+werkzeug==2.0.3
 
 # prometheus
 prometheus-flask-exporter==0.18.1
