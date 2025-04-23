@@ -10,4 +10,5 @@ itsdangerous==2.0.1
 werkzeug==2.0.3
 
 # prometheus
-prometheus-flask-exporter==0.18.1
+prometheus-flask-exporter
+#prometheus-flask-exporter==0.18.1
