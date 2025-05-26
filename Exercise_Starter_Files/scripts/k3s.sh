@@ -1,6 +1,4 @@
 #!/bin/bash
-sudo zypper update -y && sudo zypper install -y git apparmor-parser
-
 echo "**** Begin installing k3s"
 
 # Install k3s with a more recent version

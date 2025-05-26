@@ -1,3 +1,7 @@
+storage:
+  type: memory
+provisionDataStore:
+  cassandra: false
 collector:
   service:
     otlp:
