@@ -1,3 +1,10 @@
+hotrod:
+  enabled: true
+  extraEnv:
+    - name: OTEL_EXPORTER_OTLP_ENDPOINT
+      value: "http://jaeger-collector.observability.svc.cluster.local:4318"
+  extraArgs:
+    - --otel-exporter=otlp
 storage:
   type: memory
 provisionDataStore:
