@@ -1,11 +1,14 @@
-FROM alpine:3.8
+FROM python:3.12
 
-RUN apk add --no-cache py3-pip python3 && \
-    pip3 install flask requests Flask-Opentracing jaeger-client prometheus-client opentracing
-
+RUN pip install flask requests \
+        opentelemetry-api opentelemetry-sdk \
+        opentelemetry-exporter-otlp \
+        opentelemetry-instrumentation-flask \
+        opentelemetry-instrumentation-requests
+          
 COPY . /usr/src/myapp
 
-ENV FLASK_APP test-app.py
+ENV FLASK_APP app.py
 
 WORKDIR /usr/src/myapp
 

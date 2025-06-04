@@ -1,0 +1,20 @@
+hotrod:
+  enabled: true
+  extraEnv:
+    - name: OTEL_EXPORTER_OTLP_ENDPOINT
+      value: "http://jaeger-collector.observability.svc.cluster.local:4318"
+  extraArgs:
+    - --otel-exporter=otlp
+storage:
+  type: memory
+provisionDataStore:
+  cassandra: false
+collector:
+  service:
+    otlp:
+      http:
+        port: 4318
+        name: otlp-http
+      grpc:
+        port: 4317
+        name: otlp-grpc
