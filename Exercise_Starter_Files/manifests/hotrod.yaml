@@ -36,10 +36,15 @@ spec:
     spec:
       containers:
       - image: jaegertracing/example-hotrod:latest
+        args: ["all", "--otel-exporter=otlp"]
         name: hotrod
         env:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: "http://jaeger-collector.observability.svc.cluster.local:4318"
+        - name: JAEGER_AGENT_HOST
+          value: "jaeger-agent.observability.svc.cluster.local"
+        - name: JAEGER_AGENT_PORT
+          value: "6831"
         ports:
         - containerPort: 8080
           name: hotrod
